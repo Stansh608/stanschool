@@ -864,6 +864,17 @@ button:hover {
     padding: 2rem;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    min-height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.chart-box canvas {
+    max-width: 100%;
+    height: auto !important;
+    width: 100% !important;
 }
 
 .stats-summary {
@@ -882,6 +893,33 @@ button:hover {
 .stat-item p {
     color: var(--gray);
     font-size: 1.1rem;
+}
+
+@media (max-width: 768px) {
+    .charts-container {
+        grid-template-columns: 1fr;
+        padding: 0 1rem;
+    }
+    .chart-box {
+        padding: 1rem;
+        min-height: 250px;
+        overflow: hidden;
+    }
+    .chart-box canvas {
+        max-height: 300px;
+    }
+    .stats-summary {
+        padding: 0 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .chart-box {
+        min-height: 200px;
+    }
+    .chart-box canvas {
+        max-height: 250px;
+    }
 }
 
 

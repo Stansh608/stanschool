@@ -48,6 +48,7 @@ const EnrollmentStats = () => {
       },
       options: {
         responsive: true,
+        maintainAspectRatio: false,
         animation: {
           duration: 2000,
           easing: 'easeOutQuart'
@@ -56,7 +57,12 @@ const EnrollmentStats = () => {
           legend: {
             position: 'bottom',
             labels: {
-              color: '#212121'
+              boxWidth: 12,
+              padding: 15,
+              color: '#212121',
+              font: {
+                size: window.innerWidth < 768 ? 10 : 12
+              }
             }
           },
           title: {
@@ -64,8 +70,20 @@ const EnrollmentStats = () => {
             text: 'Student Distribution by Form',
             color: '#212121',
             font: {
-              size: 16
+              size: window.innerWidth < 768 ? 14 : 16
+            },
+            padding: {
+              top: 10,
+              bottom: 10
             }
+          }
+        },
+        layout: {
+          padding: {
+            top: 20,
+            bottom: 20,
+            left: 10,
+            right: 10
           }
         }
       }
@@ -86,6 +104,7 @@ const EnrollmentStats = () => {
       },
       options: {
         responsive: true,
+        maintainAspectRatio: false,
         animation: {
           duration: 2000,
           easing: 'easeOutQuart',
@@ -98,12 +117,18 @@ const EnrollmentStats = () => {
               color: '#E0E0E0'
             },
             ticks: {
-              color: '#212121'
+              color: '#212121',
+              font: {
+                size: window.innerWidth < 768 ? 10 : 12
+              }
             },
             title: {
               display: true,
               text: 'Number of Students',
-              color: '#212121'
+              color: '#212121',
+              font: {
+                size: window.innerWidth < 768 ? 12 : 14
+              }
             }
           },
           x: {
@@ -111,36 +136,65 @@ const EnrollmentStats = () => {
               color: '#E0E0E0'
             },
             ticks: {
-              color: '#212121'
+              color: '#212121',
+              font: {
+                size: window.innerWidth < 768 ? 10 : 12
+              }
             },
             title: {
               display: true,
               text: 'Academic Year',
-              color: '#212121'
+              color: '#212121',
+              font: {
+                size: window.innerWidth < 768 ? 12 : 14
+              }
             }
           }
         },
         plugins: {
+          legend: {
+            labels: {
+              color: '#212121',
+              font: {
+                size: window.innerWidth < 768 ? 10 : 12
+              }
+            }
+          },
           title: {
             display: true,
             text: 'Yearly Enrollment Trends',
             color: '#212121',
             font: {
-              size: 16
+              size: window.innerWidth < 768 ? 14 : 16
+            },
+            padding: {
+              top: 10,
+              bottom: 10
             }
-          },
-          legend: {
-            labels: {
-              color: '#212121'
-            }
+          }
+        },
+        layout: {
+          padding: {
+            top: 10,
+            bottom: 10,
+            left: 10,
+            right: 10
           }
         }
       }
     });
 
+    const handleResize = () => {
+      pieChart.resize();
+      histChart.resize();
+    };
+
+    window.addEventListener('resize', handleResize);
+
     return () => {
       pieChart.destroy();
       histChart.destroy();
+      window.removeEventListener('resize', handleResize);
     };
   }, [shouldRenderCharts]);
 
